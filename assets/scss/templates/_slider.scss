@@ -1,0 +1,42 @@
+.slider{
+  background: $background-image no-repeat;
+  background-size: cover;
+  background-position: 40% 50%;
+  padding: 10% 0 15% 0;
+  position: relative;
+  text-align: center;
+  height: 80%;
+  font-family: $secondary-font;
+  
+  //@extend .overly;
+  .block{
+      text-shadow: 3px -3px 7px rgba(0,0,0,0.5);
+    h1{
+      font-size: 5rem;      
+      opacity: 0.9;
+      line-height: 5rem;
+      font-weight: 600;
+      color: $light;
+      i{
+          font-style: normal;
+          font-family: $secondary-font;
+          color: $primary-color;
+                line-height: 5rem;
+      font-weight: 600;
+          }
+    }
+    p{
+      margin-bottom:30px;
+      text-shadow: 3px -3px 0px $black;
+      color:#b9b9b9;
+      font-size: 18px;
+      line-height: 5rem;
+      font-weight: 300;
+    }
+    span{
+      letter-spacing: 1px;
+      color: $black;
+      font-size: 1.5rem;      
+    }
+  }
+}

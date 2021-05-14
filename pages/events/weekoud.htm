@@ -1,0 +1,89 @@
+title = "Week_oud"
+url = "/events/weekoud/:week/:year"
+layout = "cms-layout"
+description = "Week kalender"
+is_hidden = 1
+
+[campaignrCalendar]
+monthParam = "{{ :month }}"
+yearParam = "{{ :year }}"
+eventPage = "events/event"
+eventSlug = ":slug"
+icalPage = "events/week"
+==
+<?php
+function onStart(){ 
+    
+    $days = ($this->controller->param('week') * 7) -6;
+    $this->timestamp = mktime(0, 0 , 0, 1, $days,  $this->controller->param('year')); 
+    $this->week = date('W', $this->timestamp); 
+    
+    $this->page->campaignrMonth =  date('F', $this->timestamp);  
+    $this->page->campaignrYear = $this->controller->param('year'); 
+    
+    $this->page->title = 'week ' . $this->week ;
+    
+    }
+?>
+==
+<section class="section agenda">
+    
+    {% set weekStart = this.page.timestamp|date_modify('this week'  )|date() %}
+    {% set weekEnd = this.page.timestamp|date_modify('this week + 6 days'  )|date() %} 
+    
+    {% set volgende_week = weekStart| date_modify('+1 month')|date('W') %}
+    {% set vorige_week = weekStart| date_modify('-1 month')|date('W') %}
+    
+    {% set laatst_dag_maand = this.page.timestamp | date_modify('last day of ' ~ this.page.campaignrMonth ~ '  ' ~ this.page.campaignrYear ) | date() %}
+    {% set laatste_dag_nummer_maand = weekEnd | date('w') %}
+    {% set eind_dag_kalender = weekEnd | date_modify('+' ~ ( 7 -laatste_dag_nummer_maand ) ~ ' day') | date()%}
+    
+    {% set aantal = date(weekStart).diff(date(weekEnd)).days %}
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+                <a class="weekswap btn btn-outline-dark my-2 col-xs-6 col-sm-6 col-md-4 col-lg-3 " href="{{ '' | page( { week: this.week|date_modify('-1 week')|date('W' ), year: this.year|date_modify('-1 week')|date('Y' )}) }}"><i class="fas fa-angle-double-left"></i>
+Week {{ weekStart| date_modify('-1 week'  ) | date('W' ) }}</a>            
+                <a class="weekswap btn btn-outline-dark my-2 col-xs-6 col-sm-6 col-md-4 col-lg-3 " href="{{ '' | page( { week: this.week|date_modify('+1 week')|date('W' ), year: this.week|date_modify('+1 week')|date('Y' )}) }}">Week {{ this.week| date_modify('+1 week'  ) | date('W' ) }} <i class="fas fa-angle-double-right"></i>
+</a>
+        </div>
+        <div class="row week">
+            {% for i in 0..aantal %}        
+                {% set dag = weekStart |date_modify('+' ~ i ~ ' day') | date('w') %}
+                {% set datum = weekStart |date_modify('+' ~ i ~ ' day') | date('Ymd') %}
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 day order-{{ i }}  {% if datum == now|date('Ymd') %}vandaag{% endif%} text-truncate">
+                    <span>{{ weekStart |date_modify('+' ~ i ~ ' day') | date('l d F') }}</span>                    
+                    <div class="container-fluid ">
+                        <div class="row">
+                        {% for i in 11..23 %}
+                            <div class=" col-2" >{{i}}:00</div>
+                            <div class="col-10 uur">
+                             {% for event in campaignrCalendar.events %}                        
+                                {% if dag == event.time_begin | date('w')  %}
+                                    {% if event.time_begin|date('Ymd') <= datum %}
+                                        {% if event.end_repeat_on|date('Ymd') >= datum or event.end_repeat_on is empty %}
+                                            {% if event.time_begin | date('H') == i %}
+                                                <div class="event {% if event.time_end | date('H') - event.time_begin | date('H') > 1 %}event-open{% endif %} w-100">
+                                                    <a class="btn text-truncate h-100 w-100" href="{{ 'events/event' |page({ slug: event.slug}) }}" data-toggle="tooltip" data-placement="bottom" title="[{{ weekStart |date_modify('+' ~ i ~ ' day') | date(' d-M ')}} - {{ event.time_begin | date('H:i') }} - {{ event.time_end | date('H:i') }}] {{ event.name }}" >                      
+                                                    {{ event.name }}</a>                                           
+                                                </div>
+                                            {% endif %}                                                                        
+                                            {% if event.time_end | date('H') > i and event.time_begin | date('H') < i  %}                                        
+                                                <div class="event event-{% if event.time_end|date_modify('-1 hour')|date('H') == i %}close{% else %}opened{% endif%} w-100 h-100">
+                                                    <a class="btn text-truncate h-100 w-100" href="{{ 'events/event' |page({ slug: event.slug}) }}" data-toggle="tooltip" data-placement="bottom" title="[{{ weekStart |date_modify('+' ~ i ~ ' day') | date(' d-M ')}} - {{ event.time_begin | date('H:i') }} - {{ event.time_end | date('H:i') }}] {{ event.name }}" ></a>
+                                                </div>   
+                                            {% endif %}
+                                        {% endif%}
+                                    {% endif %}                                
+                                {% endif%}                                                  
+                            {% endfor %}
+                            </div>
+                        {% endfor %}
+                        </div>                    
+                    </div>
+                </div>            
+            {% endfor %}
+        </div>
+    </div>
+
+</section>

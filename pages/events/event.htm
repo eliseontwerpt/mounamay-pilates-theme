@@ -1,0 +1,62 @@
+title = "Event"
+url = "/events/event/:slug"
+layout = "cms-layout"
+is_hidden = 0
+
+[campaignrEvent]
+eventSlug = "{{ :slug }}"
+calendarPage = "events/default"
+icalPage = "events/default"
+icalPageSlug = ":slug"
+==
+<?php
+function onStart(){
+    $this['week']  = date("W",time());
+    $this['year']  = date("Y",time());
+    
+    $this['timestamp'] =  strtotime($this['year'] . "W" . $this['week']);    
+    
+}
+?>
+==
+{% set evenement = campaignrEvent.event %}
+{% set weeks =  now|date('W') - evenement.time_begin|date('W' ) %}
+{% if weeks <= 0 %}
+    {% set weeks = 0 %}
+{% endif%}
+
+{% set next_event = timestamp|date_modify('+ '~ (evenement.time_begin|date('w') - 1) ~ ' days') %}
+<section class="section border-top">
+    <div class="container event">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <h1 class="text-center">{{ evenement.name }}</h1>	    
+		    </div>
+		    <div class="col-lg-8 col-md-3 text-left event-label">
+		        {{ evenement.description|md }}     
+		    </div>
+            <div class="col-lg-3 col-md-3 text-left">
+                <div class="upcoming-dates">
+                    <h3 class="text-center" >Wanneer?</h3>
+                    <ul class="list-unstyled text-center" >
+                        <li>{{ next_event|date('l')|_ }}</li>
+                        <li><h6>Tijd: {{ evenement.time_begin|date('H:i' ) }} tot {{ evenement.time_end|date('H:i') }}</h6></li>
+                        </ul>
+                    </div>
+                    <div class="upcoming-locatie" >  
+                        <h3 class="text-center" >Locatie?</h3>
+                        <ul class="list-unstyled text-center"> 
+                            {% if evenement.location_street != "" %}<li> {{ evenement.location_street }} {{ evenement.location_number }},</li>{% endif %}
+                            {% if evenement.location_zip != "" %} <li>{{ evenement.location_zip }},</li>{% endif %}
+                            {% if evenement.location_city != "" %}<li> {{ evenement.location_city }},</li>{% endif %}
+                            {% if evenement.location_misc != "" %} <li>{{ evenement.location_misc }}</li>{% endif %}
+                        </ul>
+                    </div>		            
+    		        <div class="schrijf-in align-center">
+                        <ul class="list-unstyled text-center"><li><a href="{{ 'kosten'|page }}" class="btn btn-solid-border btn-round-full">Geïnteresseerd?</a></ul></li>
+                    </div>
+		        </div>
+		    </div>		    
+		</div>
+	</div>
+</section>

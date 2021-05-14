@@ -1,0 +1,53 @@
+title = "Privacy-beleid"
+url = "/privacy-beleid"
+layout = "cms-home-layout"
+is_hidden = 0
+==
+<section>
+    <div class="algemene-voorwaarden container">
+        <div class="row justify-content-center mt-4">
+
+            <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseExample" ><i class="arrow down"></i>Privacy Beleid MounaMay Pilates Den Haag:</button>
+    
+                <div class="collapse col-lg-12 show" id="collapseOne">
+                    {% content 'privacy/algemeen' %}
+                </div>
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Gebruik gegevens:</button>
+   
+                <div class="collapse col-lg-12 show" id="collapseTwo">
+                    {% content 'privacy/gebruik-gegevens' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Opslag gegevens:</button>
+  
+                <div class="collapse col-lg-12 show" id="collapseThree">
+                    {% content 'privacy/opslag-gegevens' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Gegevens wijzigen:</button>
+
+                <div class="collapse col-lg-12 show" id="collapseFour">
+                    {% content 'privacy/gegevens-wijzigen' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Contact:</button>
+ 
+                <div class="collapse col-lg-12 show" id="collapseFive">
+                    {% content 'privacy/contact' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Klachtrecht:</button>
+
+                <div class="collapse col-lg-12 show" id="collapseSix">
+                    {% content 'privacy/klachtrecht' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Wijzigen van dit privacybeleid:</button>
+ 
+                <div class="collapse col-lg-12" id="collapseSeven">
+                    {% content 'privacy/wijzigingen' %}
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>

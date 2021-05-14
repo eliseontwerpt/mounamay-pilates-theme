@@ -1,0 +1,53 @@
+title = "Algemene voorwaarden"
+url = "/algemene-voorwaarden"
+layout = "cms-layout"
+is_hidden = 0
+==
+<section>
+    <div class="algemene-voorwaarden container">
+        <div class="row justify-content-center mt-4">
+
+            <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseExample" ><i class="arrow down"></i>Algemeen:</button>
+    
+                <div class="collapse col-lg-12 show" id="collapseOne">
+                    {% content 'voorwaarden/algemeen' %}
+                </div>
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Aanmelding:</button>
+   
+                <div class="collapse col-lg-12 show" id="collapseTwo">
+                    {% content 'voorwaarden/aanmelding' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Cursusovereenkomst en betaling :</button>
+  
+                <div class="collapse col-lg-12 show" id="collapseThree">
+                    {% content 'voorwaarden/cursusovereenkomst_en_betaling' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Afmelding, het inhalen van lessen en tussentijdse beëindiging:</button>
+
+                <div class="collapse col-lg-12 show" id="collapseFour">
+                    {% content 'voorwaarden/afmelding_inhalen_voortijdig_einde' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Risico en aansprakelijkheid:</button>
+ 
+                <div class="collapse col-lg-12 show" id="collapseFive">
+                    {% content 'voorwaarden/risico_en_aansprakelijkheid' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Klachten en huisregels:</button>
+
+                <div class="collapse col-lg-12 show" id="collapseSix">
+                    {% content 'voorwaarden/klachten_en_huisregels' %}
+                </div>
+
+                <button type="button" class="btn col-lg-12 col-md-12 col-sm-12 bg-gray" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseExample"><i class="arrow down"></i>Foto en Film tijdens de lessen:</button>
+ 
+                <div class="collapse col-lg-12" id="collapseSeven">
+                    {% content 'voorwaarden/foto_video' %}
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>

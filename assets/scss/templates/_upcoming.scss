@@ -1,0 +1,42 @@
+.upcoming{
+    @extend .overly-3 ;
+    color: $secondary-color; 
+     .event{
+        @extend .overly-3 ;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 50px;
+        padding-bottom: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        h1{
+            color: $secondary-color;
+            padding-bottom: 60px;
+        }
+        img{
+            height: 10%;
+            }
+     }
+    .upcoming-dates {
+        border: 3px solid $secondary-color;
+        background-color: rgba(255,255,255,0.2);
+        border-radius: 20px;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }    
+    .upcoming-locatie {
+        border: 3px solid $secondary-color;
+        background-color: rgba(255,255,255,0.2);
+        border-radius: 20px;
+        width: 100%;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .ul { 
+        list-style-type: none;
+    }
+                
+    
+} 

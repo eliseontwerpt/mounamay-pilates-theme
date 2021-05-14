@@ -1,0 +1,43 @@
+.small-calender{
+ 
+    .small-event{
+        .carousel-indicators{
+            li{
+                text-indent: 0;
+                list-style: none;
+                width: 100%;
+                }
+            li.active{
+                position: relative;
+                width: 100%;
+                border-radius: 8px;
+                text-indent: 0;
+                opacity: 1;
+                }
+            
+        }
+        position: relative;
+        .carousel-inner{
+            min-height: 650px;
+        }
+        h3{
+            color: $primary-color;
+            padding: 50px;
+            }
+        img{
+            position:relative;
+            width: auto;
+            height: 300px;
+        }
+    i {
+        color: $primary-color;
+        }
+    }
+    .event-list{
+        .active{
+            background: $primary-color;
+            color: white;
+            }
+        }
+    
+}

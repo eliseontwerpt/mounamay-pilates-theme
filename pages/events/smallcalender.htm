@@ -1,0 +1,105 @@
+title = "Smallcalender"
+url = "/events/smallcalender/:week/:year"
+layout = "cms-home-layout"
+is_hidden = 0
+
+[campaignrCalendar]
+monthParam = "{{ :month }}"
+yearParam = "{{ :year }}"
+eventPage = "events/event"
+eventSlug = ":slug"
+icalPage = "algemene-voorwaarden"
+==
+<?php
+function onStart(){ 
+     
+    if (is_numeric($this->controller->param('week')) == true){
+        $this['week'] = $this->controller->param('week');
+    } else {
+        $this['week'] = date("W",time());
+    }
+    if (is_numeric($this->controller->param('year')) == true){
+         $this['year'] = $this->controller->param('year');
+    } else {
+         $this['year'] = (date("Y", time()));
+    }
+        $this['timestamp'] =  strtotime($this['year'] . "W" . $this['week']);
+
+        $this->page->campaignrMonth =  date('F', $this['timestamp']);  
+        $this->page->campaignrYear = $this['year']; 
+        
+        $this->page->title = 'week ' . $this['week'] ;
+        
+    }
+?>
+==
+{% set actief = "active" %}
+<section class="section small-calender">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-12 small-event">
+                <div id="carouselCommentControls" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for event in campaignrCalendar.events %} 
+                             <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index }}" class="{{ actief }}"> {% set dag = timestamp|date_modify('+ '~ event.time_begin | date('w') ~ ' days')  %}  
+                                <div class="event {% if event.time_end | date('H') - event.time_begin | date('H') > 1 %}event-open{% endif %} w-100 {{ actief }}">
+                                    <a class="btn text-truncate h-100 w-100" href="{{ 'events/event' |page({ slug: event.slug}) }}" data-toggle="tooltip" data-placement="bottom" title="[{{ event.time_begin | date('H:i') }} - {{ event.time_end | date('H:i') }}] {{ event.name }}" >                      
+                                    <div class="event-datum">{{ dag|date('| l | d-F |') }}</div>
+                                    <div class="event-tijd">{{ event.time_begin | date('H:i') }} - {{ event.time_end | date('H:i') }}</div>
+                                    <div class="event-naam">{{ event.name }}</div></a> 
+                                   
+                                </div>
+                            </li>
+                          {% set actief = "" %}
+                        {% endfor %}
+                      </ol>
+                    <div class="carousel-inner">
+                        {% set actief = "active" %}
+                        {% for event in campaignrCalendar.events %}               
+                            <a class="carousel-control-prev" href="#carouselCommentControls" role="button" data-slide="prev">
+                                <i class="fas fa-angle-double-left"></i>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselCommentControls" role="button" data-slide="next">
+                                <i class="fas fa-angle-double-right"></i>
+                                <span class="sr-only">Next</span>
+                            </a>
+                            <div class="carousel-item {{ actief }}">
+                                <div class="container "> 
+                                    <div class="row text-center" >                                       
+                                        <h3 class="col-12 text-center">{{ event.name }}</h3>
+                                        <div class="col-12">{{ event.description|md }}</div>                                           
+                                    </div>
+                                </div>
+                            </div>
+                            {% set actief = "" %}
+                        {% endfor %}                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12 event-list">
+                <div class="row justify-content-center">
+                    <a class="btn btn-main m-1" href="{{ '' | page( { week: timestamp|date_modify('-1 week')|date('W' ), year: timestamp|date_modify('-1 week')|date('Y' )}) }}">
+                       <i class="fas fa-angle-double-left"></i> Week {{ timestamp|date_modify('-1 week')|date('W') }}
+                    </a>
+                    <a class="btn btn-main m-1" href="{{ '' | page( { week: timestamp|date_modify('+1 week')|date('W' ), year: timestamp|date_modify('+1 week')|date('Y' )}) }}">
+                        Week {{ timestamp|date_modify('+1 week')|date('W') }} <i class="fas fa-angle-double-right"></i>                    
+                    </a>
+                </div>
+                {% set actief = "active" %}
+                {% for event in campaignrCalendar.events %}
+                    
+                    {% set dag = timestamp|date_modify('+ '~ event.time_begin | date('w') ~ ' days')  %}  
+                    <div class="event {% if event.time_end | date('H') - event.time_begin | date('H') > 1 %}event-open{% endif %} w-100 {{ actief }}">
+                        <a class="btn text-truncate h-100 w-100" href="{{ 'events/event' |page({ slug: event.slug}) }}" data-toggle="tooltip" data-placement="bottom" title="[{{ event.time_begin | date('H:i') }} - {{ event.time_end | date('H:i') }}] {{ event.name }}" >                      
+                        <div class="event-datum">{{ dag|date('| l | d-F |') }}</div>
+                        <div class="event-tijd">{{ event.time_begin | date('H:i') }} - {{ event.time_end | date('H:i') }}</div>
+                        <div class="event-naam">{{ event.name }}</div></a> 
+                       
+                    </div>
+                    {% set actief = "" %}
+                {% endfor %}
+            </div>
+        </div>   
+    </div>
+</section>

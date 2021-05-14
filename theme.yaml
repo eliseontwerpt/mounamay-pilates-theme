@@ -1,0 +1,12 @@
+name: 'Pilates Studio Den haag'
+description: 'Elise Ontwerpt een website voor de pilates studio in Den Haag '
+author: 'EliseOntwerpt'
+homepage: 'https://eliseontwerp.nl'
+code: mounamay-pilates
+
+require:
+    - RainLab.Blog
+    - RainLab.Translate
+    - Martin.Forms
+    - AnandPatel.WysiwygEditors
+    - HendrikErz.Campaignr

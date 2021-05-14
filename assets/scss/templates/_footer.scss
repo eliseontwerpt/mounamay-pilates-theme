@@ -1,0 +1,96 @@
+.footer{
+    padding-bottom: 0px;
+    .footer-1{
+        padding-bottom: 20px;
+        padding-top: 10px;
+        opacity: 0.9;
+        font-size: 80%;
+        color: $secondary-color;
+        font-family: $primary-font;
+        a {
+            color: $secondary-color;
+            }
+    }
+     .navbar-brand{
+         img {
+         height: 75px;
+         margin-top: -15px;
+         }
+    }
+    
+    .footer-2{
+        color: $secondary-color;
+        padding-top: 10px;
+        font-size: 100%;
+    a:hover {
+            color: $secondary-color;
+            }
+        background-color: rgba(0,0,0,0.6);
+
+        bottom: 10px;
+        p{
+            color: rgba(255,255,255,0.4);
+            font-size: 80%;
+            i{
+                color: rgba(255,255,255,0.4);
+                font-style: none;
+                }
+            i:hover{
+                color: red;
+                }
+            }
+            i {
+        
+        color: $secondary-color;
+        }
+    }
+       
+     span {          
+        font-family: $secondary-font;
+        color: $secondary-color;
+        
+    }
+
+    @extend .overly ;
+  .copyright{
+    a{
+      font-weight: 600;
+    }
+    
+    
+  }
+}
+
+.lh-35{
+  line-height: 35px;
+}
+
+
+.logo{
+  //color: $black;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  span{
+    color: $primary-color;
+  }
+}
+
+.sub-form{
+  position: relative;
+  .form-control{
+    border: 1px solid rgba(0,0,0,0.06);
+    background: $secondary-color;
+  }
+
+}
+
+.footer-btm{
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.footer-socials{
+  li a{
+    margin-left: 15px;
+  }
+}

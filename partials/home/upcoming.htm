@@ -1,0 +1,76 @@
+description = "Carousel van Events"
+
+[campaignrUpcoming]
+sorting = "checked"
+evtNumber = 10
+eventPage = "blog"
+eventSlug = ":slug"
+==
+{##}
+{# Section Services Start #}
+{% set actief = "active" %}
+
+<section class="section upcoming bg-1">
+    <div id="carouselUpcomingControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for event in campaignrUpcoming.events %}                       
+                {% if event.slug starts with 'event-' %}                           
+                    <div class="carousel-item {{ actief }} ">  
+                        <h1 class="text-center">{{ event.name }}</h1>  
+                        {% set image = event.slug ~ '.png' %}
+                        <div class="container">
+                            <div class ="row"> 
+                                <div class="col-lg-6 .col-md-6 .col-sm-3">                        
+                                    <img class="w-100" src="{{ image |media }}" alt="" >                               
+                                </div>
+                                <div class="col-lg-3 .col-md-3 .col-sm-3">                        
+                                    {{ event.description|md }}                                
+                                </div>
+                                <div class="col-lg-3 .col-md-3 .col-sm-3">
+                                    <div class="upcoming-dates"> 
+                                        <h3>Wanneer?</h3>
+                                        <ul class="list-unstyled text-center" >                                            
+                                            {% set flag = true %}                    
+                                            {% for week in 0..10 if flag %}                                        
+                                                {% if event.time_begin|date_modify("+"~ week ~" week")|date('y/m/d' ) <= event.end_repeat_on|date('y/m/d' )  %}
+                                                    <li>{{ event.time_begin|date_modify("+"~ week ~" week")|date('D d-M-Y' ) }}</li>
+                                                {% else %}
+                                                    {% set flag = false %}
+                                                {% endif%}
+                                            {% endfor %}                                        
+                                            <li><h6>Tijd: {{ event.time_begin|date('H:i' ) }} - {{ event.time_end|date('H:i') }}</h6></li>
+                                        </ul>
+                                    </div>
+                                    <div class="upcoming-locatie" >  
+                                        <h3>Locatie?</h3> 
+                                        <ul class="list-unstyled text-center"> 
+                                            {% if event.location_street != "" %}<li> {{ event.location_street }} {{ event.location_number }},</li>{% endif %}
+                                            {% if event.location_zip != "" %} <li>{{ event.location_zip }},</li>{% endif %}
+                                            {% if event.location_city != "" %}<li> {{ event.location_city }},</li>{% endif %}
+                                            {% if event.location_misc != "" %} <li>{{ event.location_misc }}</li>{% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% set actief = "" %}
+                {% endif %}
+            {% endfor %}
+        </div>
+            {% if Posts.count > 1 %}
+                <a class="carousel-control-prev" href="#carouselUpcomingControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                 </a>
+                 <a class="carousel-control-next" href="#carouselUpcomingControls" role="button" data-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+                 </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Section Services End #}

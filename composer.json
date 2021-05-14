@@ -1,0 +1,8 @@
+{
+    "name": "eliseontwerpt/mounamay-pilates-theme",
+    "type": "october-theme",
+    "description": "Theme by Elise Ontwerpt",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

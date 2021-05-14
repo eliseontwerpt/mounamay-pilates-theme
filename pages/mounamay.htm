@@ -1,0 +1,21 @@
+title = "Mounamay"
+url = "/mounamay"
+layout = "cms-layout"
+description = "Wie is Mounamay?"
+is_hidden = 0
+==
+<?php
+function onInit(){
+    
+    $this['pagina'] = 2;
+    }
+?>
+==
+<!--  Section Services Start -->
+<section class="section service border-top">
+    <div class="container">
+		<div class="row justify-content-center">
+			{% partial 'mounamay/wie-is' %}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,30 @@
+title = "Home"
+url = "/"
+layout = "cms-home-layout"
+description = "Main Page. Made with CMS-Layout."
+meta_title = "Pilates Studio Den Haag"
+meta_description = "Pilates Studio Den Haag, Mounamay"
+is_hidden = 0
+
+[campaignrUpcoming]
+sorting = "checked"
+evtNumber = 5
+eventPage = "events/event"
+eventSlug = ":slug"
+
+[campaignrEvent]
+eventSlug = "{{ :slug }}"
+calendarPage = "events/event"
+icalPage = "events/calender"
+icalPageSlug = ":slug"
+==
+{% partial 'home/slider' %}
+
+{% partial 'home/intro' %}
+{% partial 'home/online-lessen' %}
+{% partial 'home/banner' %}
+
+{% partial 'home/lesvormen' %}
+{% partial 'home/upcoming' %}
+{% partial 'home/services' %}
+{% partial 'home/commentaar' %}

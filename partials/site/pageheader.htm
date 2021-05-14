@@ -1,0 +1,32 @@
+==
+<?php
+function onStart(){   
+    
+    switch ($this->page->title) {
+    case 'Mounamay':
+        $this['bg'] = 'bg-3';
+        break;
+    case 'Pilates':
+        $this['bg'] = 'bg-2';
+        break;
+    default:
+        $this['bg'] = 'bg-4';
+        break;
+    }    
+}
+?>
+==
+<!-- Section Page Ingro Start -->
+<section class="page-title {{ bg }}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block text-center">          
+          <h1 class="text-capitalize mb-4 text-lg">{{ this.page.title|_ }}</h1>
+          <span class="text-white">{{ this.page.description }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section Page Intro End -->

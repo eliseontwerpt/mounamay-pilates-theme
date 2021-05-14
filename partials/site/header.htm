@@ -1,0 +1,47 @@
+description = "Header with TopBar and Navigation"
+==
+{# Header Start #}
+<header class="navigation">
+	<nav class="navbar navbar-expand-lg  py-4 bg-gray" id="navbar">
+		<div class="container ">
+		  <div class="h-10 d-inline-block">
+		  	
+		   <a class="navbar-brand " href="{{ 'home'|page }}">
+		  	<img class="nav-item" height="auto" src="/themes/mehedi-megakit/assets/images/cropped-logo_green-01.png"></a>
+            
+            </div>    
+		  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-times"></span>
+			<span class="fa fa-bars"></span>
+		  </button>	  
+		  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+			<ul class="navbar-nav ml-auto">
+			    <li class="nav-item">
+				    <a class="navbar-brand" href="{{ 'home'|page }}">Pilates Studio <span>Den Haag</span></a>
+			    </li>			  
+    			<li class="nav-item">
+    			    <a  class="nav-link {% if this.page.id == 'pilates' %}active{% endif %}" href="{{ 'pilates'|page }}">Pilates</a>    			  
+    			</li>
+                <li class="nav-item">
+    			    <a  class="nav-link {% if this.page.id == 'mounamay' %}active{% endif %}" href="{{ 'mounamay'|page }}">Mounamay</a>    			  
+    			</li>
+    			<li class="nav-item">
+    			    <a  class="nav-link {% if this.page.id matches '/events.+/' %}active{% endif %}" href="{{ 'events/week'|page }}">Agenda</a> 
+    			    
+    			</li>
+    			<li class="nav-item">
+			        <a class="nav-link {% if this.page.id == 'kosten' %}active{% endif %}" href="{{ 'kosten'|page }}">Kosten</a>
+			     </li>
+			     <li class="nav-item">
+			        <a class="nav-link {% if this.page.id == 'contact-us' %}active{% endif %}" href="{{ 'contact-us'|page }}">Contact</a>
+			     </li>
+
+			   <li class="nav-item">
+			       <a href="{{ 'inschrijven'|page }}" class="btn btn-solid-border btn-round-full">{{ 'Meld je aan'|_ }}</a>
+			     </li>
+			</ul>
+		  </div>
+		</div>		
+	</nav> 
+</header>
+{# Header Close #}

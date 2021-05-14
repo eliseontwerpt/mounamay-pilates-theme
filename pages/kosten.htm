@@ -1,0 +1,38 @@
+title = "Kosten"
+url = "/kosten"
+layout = "cms-layout"
+is_hidden = 0
+==
+<!--  Section Services Start -->
+<section class="section service border-top">
+    <div class="container">
+		<div class="row  justify-content-center">
+			<div class="col-12">
+			       {% partial 'kosten/header' %}
+			</div>
+			<div  class="prijslijst col-lg-4 col-md-4 col-sm-6 p-4">
+		        {% partial'kosten/groepslessen1x' %}
+		    </div>
+			<div class="prijslijst col-lg-4 col-md-4 col-sm-6 p-4">
+		        {% partial'kosten/groepslessen2x' %}
+		    </div>
+			<div class="prijslijst col-lg-4 col-md-4 col-sm-6 p-4">
+		        {% partial'kosten/pilates-mat-duo' %}
+		    </div>
+		    <div class="prijslijst col-lg-4 col-md-4 col-sm-6 p-4">
+		        {% partial'kosten/pilates-mat-prive' %}
+		    </div>
+			<div class="prijslijst col-lg-4 col-md-4 col-sm-6 p-4">
+		        {% partial'kosten/personal-fitness-prive' %}
+		    </div>
+		    <div class="prijslijst col-lg-4 col-md-4 col-sm-6 p-4">
+		        {% partial'kosten/personal-fitness-duo' %}
+		    </div>
+		 </div>
+		 <div class="row justify-content-center">
+		    <div class="col-12 mt-4">
+			       {% partial 'kosten/betaalwijze' %}
+			</div>			
+		</div>
+	</div>
+</section>

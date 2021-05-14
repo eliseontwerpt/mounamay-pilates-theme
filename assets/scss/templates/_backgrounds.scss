@@ -1,0 +1,71 @@
+.bg-1 {
+	background: $background-image 40% 10%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.bg-2 {
+	background: $background-image2;
+	background-repeat: no-repeat;
+	background-position: 40% 120%;
+	background-size: cover;
+	background-attachment: fixed;	
+}
+
+.bg-3 {
+	background: $background-image3;
+	background-repeat: no-repeat;
+	background-position: 30% 150%;
+	background-size: cover;
+	background-attachment: fixed;
+	
+}
+
+.bg-4 {
+	background: $background-image4 ;
+	background-repeat: no-repeat;
+	background-position: 10% 150%;
+	background-size: cover;
+	background-attachment: fixed;
+	
+}
+
+@include mobile-xs{ 
+
+    }
+    
+    @include mobile{
+        .bg-1, .bg-3, .bg-4{
+            //background-size: auto;
+            background-position: center; 
+             background-attachment: scroll;
+            
+        }
+        .bg-2{
+           background-size: cover;
+           background-position: 50% 100%;
+           background-attachment: scroll;
+            }
+        .bg-3{
+            background-size: cover;
+            background-position: 40% 80%;
+            background-attachment: scroll;
+            
+            }
+        .bg-4{
+            background-position: 20% 100%;
+           
+            }
+    }
+    
+    @include tablet{
+       
+    }
+    
+    @include desktop{
+
+    }
+
+    @include large-desktop{
+
+    }

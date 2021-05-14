@@ -1,0 +1,13 @@
+title = "Default"
+url = "/default"
+layout = "cms-layout"
+is_hidden = 0
+==
+<?php
+function onStart()
+{
+   return Redirect::to( strtolower('events/week/' . date("W") . '/' . date("Y")) );
+}
+?>
+==
+{% styles %}

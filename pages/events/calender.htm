@@ -1,0 +1,76 @@
+title = "Calender"
+url = "/events/:year/:month"
+layout = "cms-layout"
+description = "Week kalender"
+is_hidden = 0
+
+[campaignrCalendar]
+monthParam = "{{ :month }}"
+yearParam = "{{ :year }}"
+eventPage = "events/event"
+eventSlug = ":slug"
+icalPage = "events/calender"
+==
+<?php
+function onStart(){
+    $this->page->campaignrMonth =  $this->controller->param('month');  
+    $this->page->campaignrYear = $this->controller->param('year');  ;
+    $this->page->title = $this->page->campaignrMonth . '  ' . $this->page->campaignrYear;
+    }
+?>
+==
+<section class="section agenda bg-1">
+
+    {% set eerste_dag_maand = now | date_modify('first day of ' ~ this.page.campaignrMonth ~ '  ' ~ this.page.campaignrYear ) | date() %}
+    {% set eerste_dag_nummer_maand = eerste_dag_maand | date('w') %}
+    
+    {% set volgende_maand = eerste_dag_maand | date_modify('+1 month'  ) | date('F' ) %}
+    {% set vorige_maand = eerste_dag_maand | date_modify('-1 month'  ) | date('F' ) %}
+    
+    {% set start_dag_kalender = eerste_dag_maand | date_modify('-' ~ eerste_dag_nummer_maand ~ ' day' )| date() %}
+    
+    {% set laatst_dag_maand = now | date_modify('last day of ' ~ this.page.campaignrMonth ~ '  ' ~ this.page.campaignrYear ) | date() %}
+    {% set laatste_dag_nummer_maand = laatst_dag_maand | date('w') %}
+    {% set eind_dag_kalender = laatst_dag_maand | date_modify('+' ~ ( 7 -laatste_dag_nummer_maand ) ~ ' day') | date()%}
+    
+    {% set aantal = date(start_dag_kalender).diff(date(eind_dag_kalender)).days %}
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+                <a class="btn btn-outline-dark my-2 col-3" href="{{ '' | page( { year: eerste_dag_maand | date_modify('-1 month')|date('Y' ) , month: eerste_dag_maand | date_modify('-1 month'  ) | date('F' )}) }}">{{ eerste_dag_maand | date_modify('-1 month'  ) | date('F' )}}</a>            
+                <a class="btn btn-outline-dark my-2 col-3" href="{{ '' | page( { year: eerste_dag_maand | date_modify('+1 month')|date('Y' ) , month: eerste_dag_maand | date_modify('+1 month'  ) | date('F' )}) }}">{{ eerste_dag_maand | date_modify('+1 month'  ) | date('F' )}}</a>
+            </div>
+        </div>
+        {% for i in 1..aantal %}
+            {% if 1 == start_dag_kalender |date_modify('+' ~ i ~ ' day') | date('w')  %}
+                <div class="row week">
+            {% endif %}
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 order-{{ start_dag_kalender |date_modify('+' ~ i ~ ' day') | date('w') }} day text-truncate">
+                    {% set dag = start_dag_kalender |date_modify('+' ~ i ~ ' day') | date('w') %}
+                    {% set datum = start_dag_kalender |date_modify('+' ~ i ~ ' day') | date('Ymd') %}
+                    <span>{{ start_dag_kalender |date_modify('+' ~ i ~ ' day') | date('l d') }}</span>
+                    <ol>
+                    {% for event in campaignrCalendar.events %}                        
+                        {% if dag == event.time_begin | date('w')  %}
+                            {% if event.time_begin|date('Ymd') <= datum %}
+                                {% if event.end_repeat_on|date('Ymd') >= datum or event.end_repeat_on is empty %}
+                                    <li>
+                                        <a class="nav-link" href="{{ 'events/event' |page({ slug: event.slug}) }}" data-toggle="tooltip" data-placement="bottom" title="[{{ start_dag_kalender |date_modify('+' ~ i ~ ' day') | date(' d-M ')}} - {{ event.time_begin | date('H:i') }} - {{ event.time_end | date('H:i') }}] {{ event.name }} text-truncate" >                      
+                                            [{{ event.time_begin | date('H:i') }} - {{ event.time_end | date('H:i') }}] {{ event.name }}
+                                        </a>
+                                    </li>
+                                {% endif%}
+                            {% endif%}
+                        {% endif%}
+                        
+                    {% endfor %}
+                    </ol>
+                </div>
+            {% if start_dag_kalender |date_modify('+' ~ i ~ ' day') | date('w') == 0 %}
+                </div>
+            {% endif %}
+            
+        {% endfor %}
+    </div>
+
+</section>

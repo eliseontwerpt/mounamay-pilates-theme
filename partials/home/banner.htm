@@ -1,0 +1,55 @@
+description = "Carousel van Aanbiedingen"
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "aanbieding"
+postsPerPage = 10
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "blog/category"
+postPage = "blog/post"
+==
+{##}
+{# Section Testimonial Start #}
+
+{% set Posts = blogPosts.posts %}
+{% set actief = "active" %}
+{% if Posts.count > 0 %}
+<section class="section banner bg-gray">
+    <div id="carouselBannerControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for post in Posts %}                
+                <div class="carousel-item {{ actief }}">
+                    <div class="container-fluid"> 
+                        <div class="row" >
+                            
+                            <div class="col-lg-6 col-md-12 col-sm-12">                            
+                                {% if post.featured_images.count > 0 %}
+                                    <img class="media-object img-fluid rounded" src="{{ post.featured_images.first.getThumb(540, 'auto') }}" />
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 banner-text">{{ post.content_html|raw }}</div>
+                            <h1>{{ post.title }}</h1>
+                        </div>
+                    </div>
+                </div>
+                {% set actief = "" %}
+            {% endfor %}
+        </div> 
+            {% if Posts.count > 1 %}
+                <a class="carousel-control-prev" href="#carouselBannerControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                 </a>
+                 <a class="carousel-control-next" href="#carouselBannerControls" role="button" data-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+
+                 </a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{# Section Testimonial End #}

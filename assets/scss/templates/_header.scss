@@ -1,0 +1,18 @@
+.navigation{
+    button[aria-expanded="true"]{    
+         .fa-bars{ 
+            display: none;
+        }
+        .fa-times{
+            display: inline;
+            }
+    }
+    button[aria-expanded="false"]{
+        .fa-bars{ 
+            display: inline;
+        }
+        .fa-times{
+           display: none;
+        }
+    }
+}

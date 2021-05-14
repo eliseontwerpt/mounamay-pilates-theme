@@ -1,0 +1,132 @@
+.banner{    
+    padding-left: 18%;
+    padding-right: 18%;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-image: $background-gradient;
+    
+    @keyframes header-animation {
+
+        100% { transform: rotate(-15deg); text-shadow: 15px 15px 8px rgba(0, 0, 0, 0.9);}
+
+    }
+    
+    .row{
+        position: relative;
+        padding: 5%;
+        }
+    h1 {
+        float:left;
+        color: $primary-color;
+        text-transform: uppercase;
+        word-wrap: break-word;
+        text-shadow: 15px 15px 8px rgba(0, 0, 0, 0.9);
+        padding: 10px;        
+        }
+    .banner-text{
+        font-family: $primary-font;
+        border: 2px solid $primary-color;
+        background-color: $secondary-color;
+        opacity: 0.9;
+        box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 0px;
+
+
+        }
+        @media only screen and (min-width: 1000px) {            
+            .banner-text{                
+                position: relative;
+                height: auto;
+                min-height: 100px;
+                right: 15%;
+                opacity: 0.9;
+                top: 20px;
+                transform: rotate(-4deg);
+            }
+            h1 {
+                position: absolute;
+                left: 1%;
+                top: 10%;
+                transform: rotate(-12deg);                
+                }
+            img{
+                transform: rotate(0deg);
+                border-radius: 10px ;
+                }
+        }
+    @include mobile-xs{ 
+        .banner{
+            padding-left: 1%;
+            padding-right: 1%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        img{
+            margin-top: 100px;
+            }
+        h1{
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            font-size: 100%;
+            top: 0px;
+            } 
+    }
+    
+    @include mobile{ 
+        .banner{
+            padding-left: 1%;
+            padding-right: 1%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        img{
+            margin-top: 100px;       
+            width: 98%;
+            }
+        h1{
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            font-size: 100%;
+            top: 0px;
+            } 
+    }
+    
+    @include tablet{
+        .banner{
+            padding-left: 1%;
+            padding-right: 1%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        img{
+            margin-top: 100px;       
+            width: 98%;
+            }
+        h1{
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            font-size: 100%;
+            top: 0px;
+            } 
+    
+    }
+    
+    @include desktop{
+        .banner{
+        padding-left: 5%;
+        padding-right: 5%;
+        }
+
+    }
+    
+    
+    @include large-desktop{
+
+    }
+}

@@ -1,0 +1,73 @@
+==
+{##}
+<form data-request="{{ __SELF__ }}::onFormSubmit">
+
+    {{ form_token() }}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success contact__msg" style="display: none" role="alert" id="{{ __SELF__ }}_forms_flash"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <label class="input-group-text" for="lesoptie">Ik schrijf me in voor:</label>
+      </div>        
+        <select class="custom-select form-control" id="lesoptie" name="lesoptie" value="" required>
+          <option>Maak een keuze</option>
+          <option value="Pilates groepslessen dinsdag 20:00">Pilates groepslessen dinsdag 20:00</option>
+          <option value="Pilates groepslessen woensdag 20:00">Pilates groepslessen woensdag 20:00</option>
+          <option value="Personal Fitness Training">Personal Fitness Training</option>
+          <option value="Pilates privé lessen">Pilates privé lessen</option>
+          <option value="Pilates duo lessen">Pilates duo lessen</option>
+          <option value="Pilates on the Beach">Pilates on the Beach</option>
+          <option value="Online Abonnement">Online Abonnement</option>
+          <option value="Pilates Online losse les">Pilates Online losse les</option>
+          <option value="Core Online losse les">Core Online losse les</option>
+        </select>       
+    </div></div>
+    <div class="form-group">
+        <input id="megakitname" name="name" type="text" class="form-control" placeholder="{{ 'Naam' |_ }}" required>
+    </div>    
+    <div class="form-group">
+        <input id="megakitname" name="adress" type="text" class="form-control" placeholder="{{ 'Straat en huisnummer' |_ }}" required>
+    </div>
+    <div class="form-group">
+        <input id="megakitemail" name="postcode" type="text" class="form-control" placeholder="{{ 'Postcode' |_ }}" required>
+    </div>
+        <div class="form-group">
+        <input id="megakitname" name="woonplaats" type="text" class="form-control" placeholder="{{ 'Woonplaats' |_ }}" required>
+    </div>
+    <div class="form-group">
+        <input id="megakitemail" name="email" type="email" class="form-control" placeholder="{{ 'Email adres' |_ }}" required>
+    </div>
+    <div class="form-group">
+        <input id="megakitemail" name="telefoonnummer" type="tel" class="form-control" placeholder="{{ 'Telefoonnummer' |_ }}" required>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Ik ben in contact gekomen door:</label>
+      </div>
+      <select class="custom-select" id="contactevaluatie" name="contactkanaal" required>
+        <option selected>Choose...</option>
+        <option value="Google">Google</option>
+        <option value="Social Media">{{ 'Sociale media' |_ }}</option>
+        <option value="Mailing">{{ 'Mailing' |_ }}</option>
+        <option value="Friends">{{ 'Via Vrienden' |_ }}</option>
+        <option value="Other">{{ 'Anders...' |_ }}</option>
+      </select>
+    </div>
+    <div class="form-group-2 mb-4">
+        <textarea id="megakitmessage" name="message" class="form-control" rows="4" placeholder="{{ 'Eventuele opmerkingen' |_ }}"></textarea>
+    </div>
+
+    <div class="mt40">
+        {% partial 'genericForm/recaptcha' %}
+    </div>
+
+    <div>
+        <button id="simpleContactSubmitButton" class="btn btn-solid-border btn-round-full" name="submit" type="submit">{{ 'Inschrijven' |_ }}</button>
+    </div>
+</form>

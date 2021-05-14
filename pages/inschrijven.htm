@@ -1,0 +1,72 @@
+title = "Inschrijven"
+url = "/inschrijven"
+layout = "cms-layout"
+is_hidden = 0
+
+[emptyForm inschrijfForm]
+group = "Nieuwe aanmelding"
+messages_success = "Your form was successfully submitted"
+messages_errors = "There were errors with your submission"
+mail_resp_enabled = 1
+mail_resp_field = "email"
+mail_resp_from = "info@pilatesstudiodenhaag.nl"
+mail_resp_template = "Nieuwe aanmelding"
+reset_form = 1
+redirect = "/inschrijven/verzonden"
+inline_errors = "disabled"
+sanitize_data = "disabled"
+anonymize_ip = "disabled"
+recaptcha_theme = "light"
+recaptcha_type = "image"
+recaptcha_size = "normal"
+emails_date_format = "Y-m-d"
+==
+<section class="contact-form-wrap section">
+    <div class="container">
+        <div class="row justify-content-center mt-4">
+            <h3 class="col-12 text-center">INSCHRIJF FORMULIER</h3>
+            <div class="col-6">                
+                
+                {% content 'inschrijven/informatie' %}
+                <img src="{{ 'Pilates-Website-9-2-1024x960.jpg'|media }}" class="w-100"></div>                
+            <div class="col">
+                
+                {% component 'inschrijfForm' %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="contact-form-wrap section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                <div class="contact-content">
+                    <span class="text-muted"> </span>
+                    <h6 class="mb-5 mt-2 text-center">Locatie Pilates Studio Den Haag</h6>
+                    <ul class="address-block list-unstyled">
+                        <li>
+                            <i class="ti-direction mr-3"></i>Prinsegracht 27, 2512 EW Den Haag
+                        </li>
+                        <li>
+                            <i class="ti-email mr-3"></i>Email: info@pilatesstudiodenhaag.nl
+                        </li>
+                        <li>
+                            <i class="ti-mobile mr-3"></i>Phone:+316 183 597 77
+                        </li>
+                    </ul>
+                    <ul class="social-icons list-inline mt-5">
+                        <li class="list-inline-item">
+                            <a href="http://www.themefisher.com"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="http://www.themefisher.com"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="http://www.themefisher.com"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> 
+    </div>
+</section>
