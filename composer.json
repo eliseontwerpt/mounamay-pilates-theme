@@ -5,4 +5,9 @@
     "require": {
         "composer/installers": "~1.0"
     }
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    } 
 }
