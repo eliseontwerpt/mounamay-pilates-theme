@@ -2,6 +2,7 @@ name: 'Pilates Studio Den haag'
 description: 'Elise Ontwerpt een website voor de pilates studio in Den Haag '
 author: 'EliseOntwerpt'
 homepage: 'https://eliseontwerp.nl'
+author_code: EliseOntwerpt
 code: mounamay-pilates
 
 require:
